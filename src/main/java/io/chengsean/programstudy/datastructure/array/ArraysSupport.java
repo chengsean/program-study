@@ -53,46 +53,21 @@ package io.chengsean.programstudy.datastructure.array;
 //                       '.:::::'                    ':'````..
 //
 
-import org.springframework.util.CollectionUtils;
-
 /**
- * 旋转数组
+ * description
  *
  * @author 程绍壮
- * @datetime 2020-08-12 17:00
+ * @datetime 2020-08-13 16:32
  */
-public class RotateArray {
+public interface ArraysSupport<T extends Comparable<T>> extends Comparable<T> {
 
-    public static void main(String[] args) {
-        int[] nums = new int[]{1,2,3,4,5,6,7};
-        int k = 3;
-        System.out.println("before："+ CollectionUtils.arrayToList(nums));
-        rotate(nums, k);
-        System.out.println("after："+ CollectionUtils.arrayToList(nums));
+    default void swap(int[] arr, int i, int j) {
+        int k = arr[i];
+        arr[i] = arr[j];
+        arr[j] = k;
     }
 
-    private static void rotate(int[] nums, int k) {
-        if (k < 0) {
-            throw new IllegalArgumentException(String.valueOf(k));
-        }
-        while (--k > 0) {
-            int n = 0;
-            for (int i = 0; i < nums.length; i++) {
-                if (n > 0) {
-                    nums[i] = n;
-                }
-                int j = i + 1;
-                if (j < nums.length) {
-                    if (j == nums.length - 1) {
-                        nums[0] = nums[j];
-                    }
-                    else {
-                        n = n > 0 ? nums[j] : nums[i];
-                        nums[j] = nums[i];
-                    }
-                }
-
-            }
-        }
+    default boolean less(T o1, T o2) {
+        return o1.compareTo(o2) < 0;
     }
 }
