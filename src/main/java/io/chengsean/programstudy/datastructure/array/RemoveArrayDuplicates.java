@@ -53,6 +53,10 @@ package io.chengsean.programstudy.datastructure.array;
 //                       '.:::::'                    ':'````..
 //
 
+import org.springframework.util.CollectionUtils;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
  *
@@ -100,12 +104,15 @@ class RemoveArrayDuplicates {
 
     public static void main(String[] args) {
         int [] nums = new int[]{0,3,3,1,1,2,5,5};
+        System.out.println("before："+ CollectionUtils.arrayToList(nums));
         int len = removeDuplicates(nums);
+        List<Integer> integers = new ArrayList<>(len);
         for (int i = 0; i < len; i++) {
-            System.out.println("array index: "+i+"，value: "+nums[i]);
+            integers.add(nums[i]);
         }
+        System.out.println("after："+ integers);
     }
-    static int removeDuplicates(int[] nums) {
+    private static int removeDuplicates(int[] nums) {
         int i = 0;
         if (nums == null || nums.length == 0) {
             return i;
