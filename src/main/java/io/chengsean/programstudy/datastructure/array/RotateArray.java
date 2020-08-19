@@ -66,15 +66,6 @@ public class RotateArray {
 
 
     public static void main(String[] args) {
-        int[] nums = new int[]{0,1,2,3,4,5,6,7,8,9};
-        int k = 2;
-        System.out.println("1：Before array rotation："+ CollectionUtils.arrayToList(nums));
-        rotate(nums, k);
-        System.out.println("1: After array rotation："+ CollectionUtils.arrayToList(nums));
-//        nums = new int[]{0,1,2,3,4,5,6,7,8,9};
-////        System.out.println("2：Before array rotation："+ CollectionUtils.arrayToList(nums));
-////        rotateTwo(nums, k);
-////        System.out.println("2: After array rotation："+ CollectionUtils.arrayToList(nums));
     }
 
 /*    private static void rotateTwo(int[] nums, int k) {
