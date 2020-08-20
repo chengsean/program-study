@@ -54,34 +54,48 @@ package io.chengsean.programstudy.datastructure.array;
 //
 
 import io.chengsean.programstudy.util.CollectionUtils;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * 找到只出现一次的数字
+ * 两个数组的交集
  *
  * @author 程绍壮
- * @datetime 2020-08-19 17:17
+ * @datetime 2020-08-20 11:34
  */
-public class SingleNumber {
-
+public class Intersect {
     public static void main(String[] args) {
-        SingleNumber singleNumber = new SingleNumber();
-//        int[] nums = new int[]{1,2,2};
-//        int[] nums = new int[]{2,2,3};
-        int[] nums = new int[]{1,1,2,3,3};
-//        int[] nums = new int[]{1,1,2,2,3};
-//        int[] nums = new int[]{1,2,3,1};
-        System.out.println("In the array "+ CollectionUtils.arrayToList(nums)
-                +" find singleNumber is "+singleNumber.singleNumber(nums));
+        Intersect intersect = new Intersect();
+        /*int[] nums1 = new int[]{1,2,2};
+        int[] nums2 = new int[]{1,1,2,3,3};*/
+        int[] nums1 = new int[]{1,2};
+        int[] nums2 = new int[]{1,1};
+        System.out.println("In the arrays "+ CollectionUtils.arrayToList(nums1)
+                +", "+ CollectionUtils.arrayToList(nums2)+ " intersect elements is "+
+                CollectionUtils.arrayToList(intersect.intersect(nums1, nums2)));
     }
 
-    private int singleNumber(int[] nums) {
-        if (nums != null && nums.length > 0) {
-            int num = 0;
-            for (int value : nums) {
-                num = num ^ value;
-            }
-            return num;
+    private int[] intersect(int[] nums1, int[] nums2) {
+        if (nums1.length < nums2.length) {
+            return this.intersect(nums2, nums1);
         }
-        return -1;
+        Map<Integer, Integer> countMap = new HashMap<>();
+        for (int n : nums1) {
+            countMap.put(n, countMap.getOrDefault(n, 0) + 1);
+        }
+        int[] intersection = new int[nums1.length];
+        int index = 0;
+        for (int n : nums2) {
+            Integer count = countMap.getOrDefault(n, 0);
+            if (count > 0) {
+                countMap.put(n, count - 1);
+                intersection[index ++] = n;
+            }
+            else {
+                countMap.remove(n);
+            }
+        }
+        return Arrays.copyOfRange(intersection, 0, index);
     }
 }
