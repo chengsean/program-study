@@ -53,72 +53,28 @@ package io.chengsean.programstudy.datastructure.array;
 //                       '.:::::'                    ':'````..
 //
 
-import io.chengsean.programstudy.util.CollectionUtils;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * 两个数组的交集
+ * 买卖股票的利润最大化
  *
  * @author 程绍壮
- * @datetime 2020-08-20 11:34
+ * @datetime 2020-08-21 11:22
  */
-public class Intersect {
+public class MaxProfit {
     public static void main(String[] args) {
-        Intersect intersect = new Intersect();
-//        int[] nums1 = new int[]{1,2,2};
-//        int[] nums2 = new int[]{1,1,2,3,3};
-//        int[] nums1 = new int[]{1,2};
-//        int[] nums2 = new int[]{1,1};
-        int[] nums1 = new int[]{1,2,2,1};
-        int[] nums2 = new int[]{2,2};
-        System.out.println("In the arrays "+ CollectionUtils.arrayToList(nums1)
-                +", "+ CollectionUtils.arrayToList(nums2)+ " intersectByMap elements is "+
-                CollectionUtils.arrayToList(intersect.intersectBySort(nums1, nums2)));
+        MaxProfit profit = new MaxProfit();
+        int[] nums = new int[]{7,1,5,3,6,4};
+//        int[] nums = new int[]{1,2,3,4,5};
+//        int[] nums = new int[]{7,6,4,3,1};
+        System.out.println("Maximize stock trading profits is "+profit.maxProfit(nums));
     }
 
-    private int[] intersectByMap(int[] nums1, int[] nums2) {
-        if (nums1.length < nums2.length) {
-            return this.intersectByMap(nums2, nums1);
-        }
-        Map<Integer, Integer> countMap = new HashMap<>();
-        for (int n : nums1) {
-            countMap.put(n, countMap.getOrDefault(n, 0) + 1);
-        }
-        int[] intersection = new int[nums1.length];
-        int index = 0;
-        for (int n : nums2) {
-            Integer count = countMap.getOrDefault(n, 0);
-            if (count > 0) {
-                countMap.put(n, count - 1);
-                intersection[index ++] = n;
-            }
-            else {
-                countMap.remove(n);
+    private int maxProfit(int[] nums) {
+        int maxProfit = 0;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > nums[i - 1]) {
+                maxProfit += nums[i] - nums[i - 1];
             }
         }
-        return Arrays.copyOfRange(intersection, 0, index);
-    }
-
-    private int[] intersectBySort(int[] nums1, int[] nums2) {
-        Arrays.sort(nums1);
-        Arrays.sort(nums2);
-        int[] intersection = new int[Math.min(nums1.length, nums2.length)];
-        int index = 0, index1 = 0, index2 = 0;
-        while (index1 < nums1.length && index2 < nums2.length) {
-            if (nums1[index1] < nums2[index2]) {
-                index1++;
-            }
-            else if (nums1[index1] > nums2[index2]) {
-                index2++;
-            }
-            else if (nums1[index1] == nums2[index2]) {
-                intersection[index++] = nums1[index1];
-                index1++;
-                index2++;
-            }
-        }
-        return Arrays.copyOfRange(intersection, 0, index);
+        return maxProfit;
     }
 }
