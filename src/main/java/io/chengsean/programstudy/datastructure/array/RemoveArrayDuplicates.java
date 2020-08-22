@@ -102,7 +102,8 @@ import java.util.Arrays;
 class RemoveArrayDuplicates {
 
     public static void main(String[] args) {
-        int[] nums = new int[]{0,3,3,1,1,2,5,5};
+        int[] nums = new int[]{7,9,0,3,3,1,1,2,5,5};
+//        int[] nums = new int[]{3,3,0};
         System.out.println("before："+ CollectionUtils.arrayToList(nums));
         int length = removeDuplicates(nums);
         int[] numArray = Arrays.copyOfRange(nums, 0, length);
@@ -128,14 +129,13 @@ class RemoveArrayDuplicates {
             return -1;
         }
         int p = 0, q = 1;
-        while (q < nums.length - 1) {
-            if (nums[p] == nums[q]) {
-                q++;
+        while (q < nums.length) {
+            if (nums[p] != nums[q]) {
+                nums[p + 1] = nums[q];
+                p++;
             }
-            else {
-                nums[++p] = nums[q];
-            }
+            q++;
         }
-        return p;
+        return p + 1;
     }
 }
