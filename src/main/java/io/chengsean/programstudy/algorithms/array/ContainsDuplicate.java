@@ -1,4 +1,4 @@
-package io.chengsean.programstudy.datastructure.array;
+package io.chengsean.programstudy.algorithms.array;
 //                            _ooOoo_
 //                           o8888888o
 //                           88" . "88
@@ -53,35 +53,31 @@ package io.chengsean.programstudy.datastructure.array;
 //                       '.:::::'                    ':'````..
 //
 
-import io.chengsean.programstudy.util.CollectionUtils;
+import java.util.Arrays;
 
 /**
- * 找到只出现一次的数字
+ * 存在重复的元素
  *
  * @author 程绍壮
- * @datetime 2020-08-19 17:17
+ * @datetime 2020-08-19 11:26
  */
-public class SingleNumber {
+public class ContainsDuplicate {
 
     public static void main(String[] args) {
-        SingleNumber singleNumber = new SingleNumber();
-//        int[] nums = new int[]{1,2,2};
-//        int[] nums = new int[]{2,2,3};
-        int[] nums = new int[]{1,1,2,3,3};
-//        int[] nums = new int[]{1,1,2,2,3};
-//        int[] nums = new int[]{1,2,3,1};
-        System.out.println("In the array "+ CollectionUtils.arrayToList(nums)
-                +" find singleNumber is "+singleNumber.singleNumber(nums));
+        ContainsDuplicate containsDuplicate = new ContainsDuplicate();
+//        int[] numbers = new int[]{1,1,1,3,3,4,3,2,4,2};
+//        int[] numbers = new int[]{1,2,3,4};
+        int[] numbers = new int[]{1,2,3,1};
+        System.out.println("has containsDuplicate: "+containsDuplicate.containsDuplicate(numbers));
     }
 
-    private int singleNumber(int[] nums) {
-        if (nums != null && nums.length > 0) {
-            int num = 0;
-            for (int value : nums) {
-                num = num ^ value;
+    private boolean containsDuplicate(int[] nums) {
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == nums[i + 1]) {
+                return true;
             }
-            return num;
         }
-        return -1;
+        return false;
     }
 }

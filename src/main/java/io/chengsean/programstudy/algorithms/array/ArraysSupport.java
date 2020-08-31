@@ -1,4 +1,4 @@
-package io.chengsean.programstudy.datastructure.array;
+package io.chengsean.programstudy.algorithms.array;
 //                            _ooOoo_
 //                           o8888888o
 //                           88" . "88
@@ -54,27 +54,20 @@ package io.chengsean.programstudy.datastructure.array;
 //
 
 /**
- * 买卖股票的利润最大化
+ * description
  *
  * @author 程绍壮
- * @datetime 2020-08-21 11:22
+ * @datetime 2020-08-13 16:32
  */
-public class MaxProfit {
-    public static void main(String[] args) {
-        MaxProfit profit = new MaxProfit();
-        int[] nums = new int[]{7,1,5,3,6,4};
-//        int[] nums = new int[]{1,2,3,4,5};
-//        int[] nums = new int[]{7,6,4,3,1};
-        System.out.println("Maximize stock trading profits is "+profit.maxProfit(nums));
+public interface ArraysSupport<T extends Comparable<T>> extends Comparable<T> {
+
+    default void swap(int[] arr, int i, int j) {
+        int k = arr[i];
+        arr[i] = arr[j];
+        arr[j] = k;
     }
 
-    private int maxProfit(int[] nums) {
-        int maxProfit = 0;
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] > nums[i - 1]) {
-                maxProfit += nums[i] - nums[i - 1];
-            }
-        }
-        return maxProfit;
+    default boolean less(T o1, T o2) {
+        return o1.compareTo(o2) < 0;
     }
 }

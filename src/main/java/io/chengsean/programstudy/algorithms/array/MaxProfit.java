@@ -1,4 +1,4 @@
-package io.chengsean.programstudy.datastructure.array;
+package io.chengsean.programstudy.algorithms.array;
 //                            _ooOoo_
 //                           o8888888o
 //                           88" . "88
@@ -53,31 +53,28 @@ package io.chengsean.programstudy.datastructure.array;
 //                       '.:::::'                    ':'````..
 //
 
-import java.util.Arrays;
-
 /**
- * 存在重复的元素
+ * 买卖股票的利润最大化
  *
  * @author 程绍壮
- * @datetime 2020-08-19 11:26
+ * @datetime 2020-08-21 11:22
  */
-public class ContainsDuplicate {
-
+public class MaxProfit {
     public static void main(String[] args) {
-        ContainsDuplicate containsDuplicate = new ContainsDuplicate();
-//        int[] numbers = new int[]{1,1,1,3,3,4,3,2,4,2};
-//        int[] numbers = new int[]{1,2,3,4};
-        int[] numbers = new int[]{1,2,3,1};
-        System.out.println("has containsDuplicate: "+containsDuplicate.containsDuplicate(numbers));
+        MaxProfit profit = new MaxProfit();
+        int[] nums = new int[]{7,1,5,3,6,4};
+//        int[] nums = new int[]{1,2,3,4,5};
+//        int[] nums = new int[]{7,6,4,3,1};
+        System.out.println("Maximize stock trading profits is "+profit.maxProfit(nums));
     }
 
-    private boolean containsDuplicate(int[] nums) {
-        Arrays.sort(nums);
-        for (int i = 0; i < nums.length - 1; i++) {
-            if (nums[i] == nums[i + 1]) {
-                return true;
+    private int maxProfit(int[] nums) {
+        int maxProfit = 0;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > nums[i - 1]) {
+                maxProfit += nums[i] - nums[i - 1];
             }
         }
-        return false;
+        return maxProfit;
     }
 }
