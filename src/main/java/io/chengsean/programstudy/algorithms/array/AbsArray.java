@@ -53,28 +53,26 @@ package io.chengsean.programstudy.algorithms.array;
 //                       '.:::::'                    ':'````..
 //
 
-import java.util.Arrays;
-
 /**
- * 存在重复的元素
+ * 数组支持抽象类
  * @author 程绍壮
- * @datetime 2020-08-19 11:26
+ * @datetime 2020-08-13 16:32
  */
-public class ContainsDuplicate {
+public abstract class AbsArray<T extends Comparable<T>> {
 
-    public static void main(String[] args) {
-        ContainsDuplicate containsDuplicate = new ContainsDuplicate();
-        int[] numbers = new int[]{1,2,3,1};
-        System.out.println("has containsDuplicate: "+containsDuplicate.containsDuplicate(numbers));
+    protected void swap(T[] arr, int i, int j) {
+        if (arr == null || arr.length == 0) {
+            return;
+        }
+        T t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
     }
 
-    private boolean containsDuplicate(int[] nums) {
-        Arrays.sort(nums);
-        for (int i = 0; i < nums.length - 1; i++) {
-            if (nums[i] == nums[i + 1]) {
-                return true;
-            }
+    protected boolean less(T o1, T o2) {
+        if (o1 == null || o2 == null) {
+            return false;
         }
-        return false;
+        return o1.compareTo(o2) < 0;
     }
 }

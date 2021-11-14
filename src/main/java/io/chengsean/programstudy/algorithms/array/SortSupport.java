@@ -54,20 +54,11 @@ package io.chengsean.programstudy.algorithms.array;
 //
 
 /**
- * description
- *
+ * 排序
  * @author 程绍壮
  * @datetime 2020-08-13 16:32
  */
-public interface ArraysSupport<T extends Comparable<T>> extends Comparable<T> {
+public interface SortSupport<T> {
 
-    default void swap(int[] arr, int i, int j) {
-        int k = arr[i];
-        arr[i] = arr[j];
-        arr[j] = k;
-    }
-
-    default boolean less(T o1, T o2) {
-        return o1.compareTo(o2) < 0;
-    }
+    void sort(T[] arr);
 }
