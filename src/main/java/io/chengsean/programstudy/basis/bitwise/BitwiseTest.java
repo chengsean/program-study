@@ -8,6 +8,10 @@ package io.chengsean.programstudy.basis.bitwise;
  */
 public class BitwiseTest {
     public static void main(String[] args) {
-        
+        new BitwiseTest().hello();
+    }
+
+    private void hello() {
+
     }
 }
